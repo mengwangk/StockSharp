@@ -1,5 +1,80 @@
 StockSharp Data (Hydra) Change log
 ========================
+## v4.4.11:
+* (feature) Support dates range for ticks, order book and order log subscriptions.
+* (feature) Yahoo. Intraday interval supported.
+* (bug) Yahoo. Fix downloading history for futures.
+* (bug) Bithumb. Ticks subscription fix.
+* (bug) Image publish cancellation processing fix.
+* (feature) QuikLua. Handle From To date range for market data requests. https://stocksharp.ru/forum/9460/korrektnoe-otobrazhenie-svechei/
+* (feature) Bittrex. Web sockets supported.
+* (feature) Orders, Executions, Trades, MyTrades. Sides coloring.
+* (feature) Securities. BuyBackDate, BuyBackPrice columns.
+
+## v4.4.10:
+* (feature) Themes. Icons auto coloring.
+* (feature) CandleSeries.IsRegularTradingHours.
+* (bug) Logs. Designed fix.
+* (feature) FIX connector. SSL support extended.
+* (bug) MarketDataGrid. Fix further refreshes after error request.
+* (feature) Default theme changed.
+* (bug) Grids. Time zone column fix.
+* (feature) Start and stop dates for separate security and data types.
+
+## v4.4.9:
+* (bug) Charting. RVI and Gator rendeding fixes.
+* (bug) Themes fixes.
+* (bug) Grids. Fix filters for enum based fields.
+* (bug) FXCM live source fix.
+* (bug) Themes fixes.
+* (feature) Support board edit by FIX protocol.
+* (feature) Modify securities by FIX connection.
+* (feature) Plaza. v5.3.6
+* (feature) Micex. Stock30, Currency28, Currency30 interfaces.
+* (bug) Transaq. Fix shared dll initialization https://stocksharp.ru/forum/9421/podklyuchenie-sdata-k-tranzak-/
+
+## v4.4.8:
+* (feature) Task pane redesign.
+* (feature) Candles build from support (mostly fro FX market).
+* (bug) InteractiveBrokers. End date for candles request fix https://stocksharp.ru/posts/m/43390/.
+* (bug) InteractiveBrokers. SecurityLookup error response handling fix.
+* (bug) InteractiveBrokers. Candles request fix.
+* (feature) Change limits while downloading a lot of data.
+* (feature) Http -> Https.
+* (feature) More stable for custom plugins errors.
+* (feature) Order log. Show spread and tick charts.
+* (feature) TimeZone auto conversion while exporting.
+
+## v4.4.7:
+* (feature) Compress candles from smaller time-frames.
+* (bug) PnF candles store fixes.
+* (bug) Csv importer. Fix candles processing.
+* (bug) Binary storage. Fix local time save http://stocksharp.ru/forum/9296/isklyuchenie-pri-sohranenii-executionmessage
+* (feature) Finam and MFD uses Pause interval to prevent ip ban.
+
+## v4.4.6.2:
+* (bug) Reconnect fix.
+* (bug) Binance, Coinbase, Bitfinex, Bitstamp, IQFeed fixes.
+
+## v4.4.6.1:
+* (bug) File progress window. Closing fix.
+* (bug) StochasticOscillator draw fix.
+* (bug) InteractiveBrokers. Time zone fix.
+* (feature) Bitfinex, Okcoin. Track account subscriptions.
+* (bug) FIX connector. Fix process unknown outgoing messages.
+* (bug) Kraken. Signature calc fix.
+* (bug) InteractiveBrokers. Historical data fix.
+* (bug) Crypto. Market data loading in non EN culture fix.
+* (bug) Localization fixes.
+
+## v4.4.6:
+* (feature) Quik DDE turned off.
+* (bug) Yahoo restored.
+* (bug) IQFeed. Fix parse fundamental messages with empty exchange code.
+* (feature) Level1 fields. Dividends, AfterSplit, BeforeSplit.
+* (bug) Themes fix http://stocksharp.ru/forum/9257/v-gidre-i-v-dizainere-otsutstvuyut-biblioteki-devexpressxpfthemesvs2017/
+* (feature) Embedded links of crypto connectors documentation.
+
 ## v4.4.5.4:
 * (feature) Crypto connectors Bitfinex, Coinbase, Kraken, Poloniex, GDAX, Bittrex, Bithumb, HitBTC, OKCoin, Coincheck updates.
 * (feature) Source-stubs for Binance, Liqui, CEX.IO, Cryptopia, OKEx, BitMEX, YoBit, Livecoin, EXMO, Deribit, Huobi, Kucoin, BITEXBOOK, CoinExchange.

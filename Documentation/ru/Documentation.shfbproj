@@ -156,9 +156,11 @@
       <DocumentationSource sourceFile="..\..\..\StockSharpReleases\LatestDocRefs\ru\StockSharp.Okex.xml" />
       <DocumentationSource sourceFile="..\..\..\StockSharpReleases\LatestDocRefs\ru\StockSharp.Yobit.dll" />
       <DocumentationSource sourceFile="..\..\..\StockSharpReleases\LatestDocRefs\ru\StockSharp.Yobit.xml" />
+      <DocumentationSource sourceFile="..\..\..\StockSharpReleases\LatestDocRefs\ru\StockSharp.BarChart.dll" />
+      <DocumentationSource sourceFile="..\..\..\StockSharpReleases\LatestDocRefs\ru\StockSharp.BarChart.xml" />
     </DocumentationSources>
-    <CopyrightHref>http://stocksharp.ru</CopyrightHref>
-    <CopyrightText>&amp;#169%3b 2017 - StockSharp LLC</CopyrightText>
+    <CopyrightHref>https://stocksharp.ru</CopyrightHref>
+    <CopyrightText>&amp;#169%3b 2018 - StockSharp LLC</CopyrightText>
     <FeedbackEMailAddress>info%40stocksharp.ru</FeedbackEMailAddress>
     <FeedbackEMailLinkText>отзыв</FeedbackEMailLinkText>
     <ApiFilter>
@@ -233,13 +235,125 @@
     <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Topics\Designer_GluingData.aml" />
+    <None Include="Topics\Designer_create_index.aml" />
+    <None Include="Topics\Terminal_GluingData.aml" />
+    <None Include="Topics\Termina_index.aml" />
+    <None Include="Topics\Terminal_Notifications.aml" />
+    <None Include="Topics\Terminal_Notifications_Panel.aml" />
+    <None Include="Topics\Terminal_Creating_repository_of_historical_data.aml" />
+    <None Include="Topics\Terminal_Risk_Rule.aml.aml" />
+    <None Include="Topics\HydraUpdate.aml" />
+    <None Include="Topics\Hydra_Creation_tool.aml" />
+    <None Include="Topics\HydraSettingsSecurityEditor.aml" />
+    <None Include="Topics\Terminal_Quick_start.aml" />
+    <None Include="Topics\Terminal_Quick_start..aml" />
+    <None Include="Topics\Terminal_Connectors_settings.aml" />
+    <None Include="Topics\Designer_Connectors_settings.aml" />
+    <None Include="Topics\FIXServerConnectorsSettings.aml" />
+    <None Include="Topics\FIXConnectorsSettings.aml" />
+    <None Include="Topics\Terminal_notification_Setting.aml" />
+    <None Include="Topics\YobitConnectorsSettings.aml" />
+    <None Include="Topics\PoloniexConnectorsSettings.aml" />
+    <None Include="Topics\OKExConnectorsSettings.aml" />
+    <None Include="Topics\OKCoinConnectorsSettings.aml" />
+    <None Include="Topics\LivecoinConnectorsSettings.aml" />
+    <None Include="Topics\LiquiConnectorsSettings.aml" />
+    <None Include="Topics\KucoinConnectorsSettings.aml" />
+    <None Include="Topics\KrakenConnectorsSettings.aml" />
+    <None Include="Topics\HuobiConnectorsSettings.aml" />
+    <None Include="Topics\HitBTCConnectorsSettings.aml" />
+    <None Include="Topics\GDAXConnectorsSettings.aml" />
+    <None Include="Topics\EXMOConnectorsSettings.aml" />
+    <None Include="Topics\DeribitConnectorsSettings.aml" />
+    <None Include="Topics\CryptopiaConnectorsSettings.aml" />
+    <None Include="Topics\CoinExchangeConnectorsSettings.aml" />
+    <None Include="Topics\CoincheckConnectorsSettings.aml" />
+    <None Include="Topics\CoinbaseConnectorsSettings.aml" />
+    <None Include="Topics\CexConnectorsSettings.aml" />
+    <None Include="Topics\BtceConnectorsSettings.aml" />
+    <None Include="Topics\BittrexConnectorsSettings.aml" />
+    <None Include="Topics\BitStampConnectorsSettings.aml" />
+    <None Include="Topics\BitMEXConnectorsSettings.aml" />
+    <None Include="Topics\BithumbConnectorsSettings.aml" />
+    <None Include="Topics\BitfinexConnectorsSettings.aml" />
+    <None Include="Topics\BitexbookConnectorsSettings.aml" />
+    <None Include="Topics\BinanceConnectorsSettings.aml" />
+    <None Include="Topics\FXCMConnectorsSettings.aml" />
+    <None Include="Topics\OandaConnectorsSettings.aml" />
+    <None Include="Topics\LMAXConnectorsSettings.aml" />
+    <None Include="Topics\QuantFEEDConnectorsSettings.aml" />
+    <None Include="Topics\BarChartConnectorsSettings.aml" />
+    <None Include="Topics\ITCHConnectorsSettings.aml" />
+    <None Include="Topics\RithmicConnectorsSettings.aml" />
+    <None Include="Topics\CQGConnectorsSettings.aml" />
+    <None Include="Topics\SterlingConnectorsSettings.aml" />
+    <None Include="Topics\IQFeedConnectorsSettings.aml" />
+    <None Include="Topics\ETradeConnectorsSettings.aml" />
+    <None Include="Topics\BlackwoodConnectorsSettings.aml" />
+    <None Include="Topics\OpenECryConnectorsSettings.aml" />
+    <None Include="Topics\SpbExConnectorsSettings.aml" />
+    <None Include="Topics\TwimeConnectorsSettings.aml" />
+    <None Include="Topics\AlorConnectorsSettings.aml" />
+    <None Include="Topics\MicexConnectorsSettings.aml" />
+    <None Include="Topics\TransaqConnectorsSettings.aml" />
+    <None Include="Topics\PlazaConnectorsSettings.aml" />
+    <None Include="Topics\AlfaConnectorsSettings.aml" />
+    <None Include="Topics\SmartCOMConnectorsSettings.aml" />
+    <None Include="Topics\QuikFixConnectorsSettings.aml" />
+    <None Include="Topics\Conceptual.aml" />
+    <None Include="Topics\Terminal_contact_us.aml" />
+    <None Include="Topics\Terminal_Reset_language_settings.aml" />
+    <None Include="Topics\Terminal_Start_mode.aml" />
+    <None Include="Topics\Terminal_connection_mapping.aml" />
+    <None Include="Topics\Terminal_notification_Setting.aml" />
+    <None Include="Topics\Terminal_emulation_setting.aml" />
+    <None Include="Topics\Terminal_Connection_settings.aml" />
+    <None Include="Topics\Terminal_publish.aml" />
+    <None Include="Topics\Terminal_Chat.aml" />
+    <None Include="Topics\Terminal_Security_mapping.aml" />
+    <None Include="Topics\Terminal_Security_ExtensionInfo.aml" />
+    <None Include="Topics\Terminal_Edit_tool.aml" />
+    <None Include="Topics\Terminal_Creation_tool.aml" />
+    <None Include="Topics\Terminal_Tape_Trades.aml" />
+    <None Include="Topics\Terminal_Chart_Position.aml" />
+    <None Include="Topics\Terminal_Orders_conditional.aml" />
+    <None Include="Topics\Terminal_Orders.aml" />
+    <None Include="Topics\Terminal_Trades.aml" />
+    <None Include="Topics\Terminal_chart_PU.aml" />
+    <None Include="Topics\Terminal_Boards.aml" />
+    <None Include="Topics\Terminal_Panel_Portfolios.aml" />
+    <None Include="Topics\Terminal_Panel_Logs.aml" />
+    <None Include="Topics\Terminal_Workspace.aml" />
+    <None Include="Topics\Terminal_Quick_access_toolbar.aml" />
+    <None Include="Topics\Terminal_Components.aml" />
+    <None Include="Topics\Connectors_setting.aml" />
+    <None Include="Topics\Connectors_setting.aml" />
+    <None Include="Topics\Terminal.aml" />
+    <None Include="Topics\Terminal_orderlog.aml" />
+    <None Include="Topics\Terminal_news.aml" />
+    <None Include="Topics\Terminal_option_desk.aml" />
+    <None Include="Topics\Terminal_options_positions.aml" />
+    <None Include="Topics\Terminal_smile_of_volatility.aml" />
+    <None Include="Topics\Terminal_Buy_Sell.aml" />
+    <None Include="Topics\Terminal_level1.aml" />
+    <None Include="Topics\Terminal_Securities.aml" />
+    <None Include="Topics\Terminal_Teamwork.aml" />
+    <None Include="Topics\Terminal_Repository_of_market_data.aml" />
+    <None Include="Topics\Terminal_Download_instruments.aml" />
+    <None Include="Topics\Terminal_Update_to_new_version.aml" />
+    <None Include="Topics\Terminal_Installation.aml" />
+    <None Include="Topics\Terminal_Depth_Panel2.aml" />
+    <None Include="Topics\Terminal_Chart.aml" />
+    <None Include="Topics\Terminal_Programs_interface.aml" />
+    <None Include="Topics\Terminal_Tape.aml" />
     <None Include="Topics\HydraSettingsGDAX.aml" />
     <None Include="Topics\HydraSettingsEXMO.aml" />
     <None Include="Topics\HydraSettingsBitexbook.aml" />
     <None Include="Topics\HydraSettingsBinance.aml" />
     <None Include="Topics\HydraSettingsBitfinex.aml" />
     <None Include="Topics\HydraSettingsCoinbase.aml" />
-    <None Include="Topics\HydraSettingsCoinExchenge.aml" />
+    <None Include="Topics\HydraSettingsCoinExchange.aml" />
     <None Include="Topics\HydraSettingsCryptopia.aml" />
     <None Include="Topics\HydraSettingsDeribit.aml" />
     <None Include="Topics\HydraSettingsHitBTC.aml" />
@@ -270,7 +384,7 @@
     <None Include="Topics\EXMOSample.aml" />
     <None Include="Topics\DeribitSample.aml" />
     <None Include="Topics\CryptopiaSample.aml" />
-    <None Include="Topics\CoinExchengeSample.aml" />
+    <None Include="Topics\CoinExchangeSample.aml" />
     <None Include="Topics\GDAXSample.aml" />
     <None Include="Topics\CoincheckSample.aml" />
     <None Include="Topics\CoinbaseSample.aml" />
@@ -419,7 +533,6 @@
     <None Include="Topics\FixStopOrders.aml" />
     <None Include="Topics\BitStampSample.aml" />
     <None Include="Topics\FixSample.aml" />
-    <None Include="Topics\BitStampSample .aml" />
     <None Include="Topics\BtceSample.aml" />
     <None Include="Topics\OandaHistory.aml" />
     <None Include="Topics\OandaStopOrders.aml" />
@@ -2951,9 +3064,9 @@
       <ImageId>CoincheckSample</ImageId>
       <AlternateText>Coincheck Sample</AlternateText>
     </Image>
-    <Image Include="Art\CoinExchengeSample.png">
-      <ImageId>CoinExchengeSample</ImageId>
-      <AlternateText>Coin Exchenge Sample</AlternateText>
+    <Image Include="Art\CoinExchangeSample.png">
+      <ImageId>CoinExchangeSample</ImageId>
+      <AlternateText>Coin Exchange Sample</AlternateText>
     </Image>
     <Image Include="Art\CryptopiaSample.png">
       <ImageId>CryptopiaSample</ImageId>
@@ -3071,9 +3184,9 @@
       <ImageId>hydra_settings_Coinbase</ImageId>
       <AlternateText>hydra settings Coinbase</AlternateText>
     </Image>
-    <Image Include="Art\hydra_settings_CoinExchenge.png">
-      <ImageId>hydra_settings_CoinExchenge</ImageId>
-      <AlternateText>hydra settings Coin Exchenge</AlternateText>
+    <Image Include="Art\hydra_settings_CoinExchange.png">
+      <ImageId>hydra_settings_CoinExchange</ImageId>
+      <AlternateText>hydra settings Coin Exchange</AlternateText>
     </Image>
     <Image Include="Art\hydra_settings_CEX.IO.png">
       <ImageId>hydra_settings_CEX.IO</ImageId>
@@ -3110,6 +3223,210 @@
     <Image Include="Art\GdaxSample.png">
       <ImageId>GdaxSample</ImageId>
       <AlternateText>Gdax Sample</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_orderlog_00.png">
+      <ImageId>Terminal_orderlog_00</ImageId>
+      <AlternateText>Terminal orderlog 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_news_00.png">
+      <ImageId>Terminal_news_00</ImageId>
+      <AlternateText>Terminal news 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_option_desk_00.png">
+      <ImageId>Terminal_option_desk_00</ImageId>
+      <AlternateText>Terminal option desk 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Graph_options_positions_00.png">
+      <ImageId>Terminal_Graph_options_positions_00</ImageId>
+      <AlternateText>Terminal Graph options positions 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_smile_of_volatility_00.png">
+      <ImageId>Terminal_smile_of_volatility_00</ImageId>
+      <AlternateText>Terminal smile of volatility 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Buy_Sell_00.png">
+      <ImageId>Terminal_Buy_Sell_00</ImageId>
+      <AlternateText>Terminal Buy Sell 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_securities_00.png">
+      <ImageId>Terminal_securities_00</ImageId>
+      <AlternateText>Terminal securities 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Level1_00.png">
+      <ImageId>Terminal_Level1_00</ImageId>
+      <AlternateText>Terminal Level 1 00</AlternateText>
+    </Image>
+    <Image Include="Art\Designer_Connection_settings_00.png">
+      <ImageId>Designer_Connection_settings_00</ImageId>
+      <AlternateText>Designer Connection settings 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Download_the_tools_00.png">
+      <ImageId>Terminal_Download_the_tools_00</ImageId>
+      <AlternateText>Terminal Download the tools 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Panel_Market_Depth.png">
+      <ImageId>Terminal_Panel_Market_Depth</ImageId>
+      <AlternateText>Terminal Panel Market Depth</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Panel_graphics_00.png">
+      <ImageId>Terminal_Panel_graphics_00</ImageId>
+      <AlternateText>Terminal Panel graphics 00</AlternateText>
+    </Image>
+    <Image Include="Art\Designer_Quick_access_toolbar_03.png">
+      <ImageId>Designer_Quick_access_toolbar_03</ImageId>
+      <AlternateText>Designer Quick access toolbar 03</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Repository_of_historical_data_00.png">
+      <ImageId>Terminal_Repository_of_historical_data_00</ImageId>
+      <AlternateText>Terminal Repository of historical data 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Viewing_downloaded_data_00.png">
+      <ImageId>Terminal_Viewing_downloaded_data_00</ImageId>
+      <AlternateText>Terminal Viewing downloaded data 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Workspace_00.png">
+      <ImageId>Terminal_Workspace_00</ImageId>
+      <AlternateText>Terminal Workspace 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Tape_00.png">
+      <ImageId>Terminal_Tape_00</ImageId>
+      <AlternateText>Terminal Tape 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Installation_02.png">
+      <ImageId>Terminal_Installation_02</ImageId>
+      <AlternateText>Terminal Installation 02</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Installation_01.png">
+      <ImageId>Terminal_Installation_01</ImageId>
+      <AlternateText>Terminal Installation 01</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Installation_00.png">
+      <ImageId>Terminal_Installation_00</ImageId>
+      <AlternateText>Terminal Installation 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_main_00.png">
+      <ImageId>Terminal_main_00</ImageId>
+      <AlternateText>Terminal main 00</AlternateText>
+    </Image>
+    <Image Include="Art\APIConnectorsSettingsHydraWindow.png">
+      <ImageId>APIConnectorsSettingsHydraWindow</ImageId>
+      <AlternateText>APIConnectors Settings Hydra Window</AlternateText>
+    </Image>
+    <Image Include="Art\APIConnectorsSettingsWindow.png">
+      <ImageId>APIConnectorsSettingsWindow</ImageId>
+      <AlternateText>APIConnectors Settings Window</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_setting_source_button.png">
+      <ImageId>hydra_setting_source_button</ImageId>
+      <AlternateText>hydra setting source button</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_settings_SPBEx.png">
+      <ImageId>hydra_settings_SPBEx</ImageId>
+      <AlternateText>hydra settings SPBEx</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_settings_QuantFEED.png">
+      <ImageId>hydra_settings_QuantFEED</ImageId>
+      <AlternateText>hydra settings QuantFEED</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_00.png">
+      <ImageId>Terminal_Quick_start_00</ImageId>
+      <AlternateText>Terminal Quick start 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_06.png">
+      <ImageId>Terminal_Quick_start_06</ImageId>
+      <AlternateText>Terminal Quick start 06</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_05.png">
+      <ImageId>Terminal_Quick_start_05</ImageId>
+      <AlternateText>Terminal Quick start 05</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_04.png">
+      <ImageId>Terminal_Quick_start_04</ImageId>
+      <AlternateText>Terminal Quick start 04</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_03.png">
+      <ImageId>Terminal_Quick_start_03</ImageId>
+      <AlternateText>Terminal Quick start 03</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_02.png">
+      <ImageId>Terminal_Quick_start_02</ImageId>
+      <AlternateText>Terminal Quick start 02</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_01.png">
+      <ImageId>Terminal_Quick_start_01</ImageId>
+      <AlternateText>Terminal Quick start 01</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Quick_start_011.png">
+      <ImageId>Terminal_Quick_start_011</ImageId>
+      <AlternateText>Terminal Quick start 011</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_securitiesPanel_00.png">
+      <ImageId>hydra_securitiesPanel_00</ImageId>
+      <AlternateText>hydra securities Panel 00</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_OrderPanel_02.png">
+      <ImageId>Terminal_OrderPanel_02</ImageId>
+      <AlternateText>Terminal Order Panel 02</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_OrderPanel_01.png">
+      <ImageId>Terminal_OrderPanel_01</ImageId>
+      <AlternateText>Terminal Order Panel 01</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Orders_conditional_panel_03.png">
+      <ImageId>Terminal_Orders_conditional_panel_03</ImageId>
+      <AlternateText>Terminal Orders conditional panel 03</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Orders_conditional_panel_02.png">
+      <ImageId>Terminal_Orders_conditional_panel_02</ImageId>
+      <AlternateText>Terminal Orders conditional panel 02</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Orders_conditional_panel_01.png">
+      <ImageId>Terminal_Orders_conditional_panel_01</ImageId>
+      <AlternateText>Terminal Orders conditional panel 01</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_about.png">
+      <ImageId>Terminal_about</ImageId>
+      <AlternateText>Terminal about</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_about.png">
+      <ImageId>hydra_about</ImageId>
+      <AlternateText>hydra about</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_update.png">
+      <ImageId>hydra_update</ImageId>
+      <AlternateText>hydra update</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Panel_graphics_01.png">
+      <ImageId>Terminal_Panel_graphics_01</ImageId>
+      <AlternateText>Terminal Panel graphics 01</AlternateText>
+    </Image>
+    <Image Include="Art\hydra_Quick_start_01.png">
+      <ImageId>hydra_Quick_start_01</ImageId>
+      <AlternateText>hydra Quick start 01</AlternateText>
+    </Image>
+    <Image Include="Art\PlazaConnection.png">
+      <ImageId>PlazaConnection</ImageId>
+      <AlternateText>Plaza Connection</AlternateText>
+    </Image>
+    <Image Include="Art\iQFeedIQConnectLogin.png">
+      <ImageId>iQFeedIQConnectLogin</ImageId>
+      <AlternateText>iQFeedIQConnect Login</AlternateText>
+    </Image>
+    <Image Include="Art\iQFeedIQLinkLauncher.png">
+      <ImageId>iQFeedIQLinkLauncher</ImageId>
+      <AlternateText>iQFeedIQLink Launcher</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Risk_Rule.png">
+      <ImageId>Terminal_Risk_Rule</ImageId>
+      <AlternateText>Terminal Risk Rule</AlternateText>
+    </Image>
+    <Image Include="Art\Terminal_Notifications_Panel.png">
+      <ImageId>Terminal_Notifications_Panel</ImageId>
+      <AlternateText>Terminal Notifications Panel</AlternateText>
+    </Image>
+    <Image Include="Topics\hydra_securitiesPanel_00.png">
+      <ImageId>hydra_securitiesPanel_00</ImageId>
+      <AlternateText>hydra securities Panel 00</AlternateText>
     </Image>
   </ItemGroup>
   <ItemGroup>

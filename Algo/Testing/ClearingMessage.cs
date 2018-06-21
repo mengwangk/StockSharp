@@ -22,7 +22,7 @@ namespace StockSharp.Algo.Testing
 	/// <summary>
 	/// The message about performing clearing on exchange.
 	/// </summary>
-	class ClearingMessage : Message
+	public class ClearingMessage : Message
 	{
 		/// <summary>
 		/// Security ID.
@@ -40,6 +40,19 @@ namespace StockSharp.Algo.Testing
 		public ClearingMessage()
 			: base(ExtendedMessageTypes.Clearing)
 		{
+		}
+
+		/// <summary>
+		/// Create a copy of <see cref="ClearingMessage"/>.
+		/// </summary>
+		/// <returns>Copy.</returns>
+		public override Message Clone()
+		{
+			return new ClearingMessage
+			{
+				SecurityId = SecurityId,
+				ClearMarketDepth = ClearMarketDepth,
+			};
 		}
 
 		/// <summary>

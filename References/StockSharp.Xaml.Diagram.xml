@@ -628,7 +628,7 @@
     </member>
     <member name="P:StockSharp.Xaml.Diagram.DiagramEditorControl.SelectedElement">
       <summary>
-            The selected element.
+            Selected element.
             </summary>
     </member>
     <member name="P:StockSharp.Xaml.Diagram.DiagramEditorControl.IndicatorTypes">
@@ -1400,6 +1400,11 @@
             Is row expanded.
             </summary>
     </member>
+    <member name="P:StockSharp.Xaml.Diagram.PaletteTreeItem.Icon">
+      <summary>
+            Icon.
+            </summary>
+    </member>
     <member name="E:StockSharp.Xaml.Diagram.PaletteTreeItem.ParentChanged">
       <summary>
             The parent element changed event.
@@ -2111,6 +2116,31 @@
             To call the available properties change event.
             </summary>
     </member>
+    <member name="T:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement">
+      <summary>
+            Truncate market depth element.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement.TypeId">
+      <summary>
+            The unique identifier of the diagram element type.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement.IconName">
+      <summary>
+            Icon resource name.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement.MaxDepth">
+      <summary>
+            Max depth.
+            </summary>
+    </member>
+    <member name="M:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Xaml.Diagram.Elements.MarketDepthTruncateDiagramElement" />.
+            </summary>
+    </member>
     <member name="T:StockSharp.Xaml.Diagram.Elements.BlackScholesGreeks">
       <summary>
             Black-Scholes "greeks".
@@ -2429,6 +2459,11 @@
     <member name="P:StockSharp.Xaml.Diagram.Elements.CandleSourceDiagramElement.IsCalcVolumeProfile">
       <summary>
             To perform the calculation <see cref="P:StockSharp.Algo.Candles.Candle.PriceLevels" />. By default, it is disabled.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Diagram.Elements.CandleSourceDiagramElement.IsRegularTradingHours">
+      <summary>
+            Use only the regular trading hours for which data will be requested.
             </summary>
     </member>
     <member name="M:StockSharp.Xaml.Diagram.Elements.CandleSourceDiagramElement.#ctor">
@@ -3445,7 +3480,7 @@
     </member>
     <member name="M:StockSharp.Xaml.Diagram.Elements.TradeAllowedDiagramElement.#ctor">
       <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Xaml.Diagram.Elements.CheckWorkingTimeDiagramElement" />.
+            Initializes a new instance of the <see cref="T:StockSharp.Xaml.Diagram.Elements.TradeAllowedDiagramElement" />.
             </summary>
     </member>
     <member name="T:StockSharp.Xaml.Diagram.Elements.TypedDiagramElement`1">

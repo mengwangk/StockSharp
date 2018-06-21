@@ -26,7 +26,6 @@ namespace StockSharp.Algo.Candles
 
 	using MoreLinq;
 
-	using StockSharp.Algo.Storages;
 	using StockSharp.Logging;
 	using StockSharp.BusinessEntities;
 	using StockSharp.Messages;
@@ -37,7 +36,7 @@ namespace StockSharp.Algo.Candles
 	/// </summary>
 	public class CandleManager : BaseLogReceiver, ICandleManager
 	{
-		private sealed class CandleManagerSourceList : SynchronizedList<ICandleSource<Candle>>, ICandleSourceList
+		private sealed class CandleManagerSourceList : SynchronizedList<ICandleSource<Candle>>
 		{
 			private sealed class SourceInfo : Disposable
 			{
@@ -46,10 +45,7 @@ namespace StockSharp.Algo.Candles
 
 				public SourceInfo(ICandleSource<Candle> source, CandleManager manager)
 				{
-					if (source == null)
-						throw new ArgumentNullException(nameof(source));
-
-					_source = source;
+					_source = source ?? throw new ArgumentNullException(nameof(source));
 					_manager = manager;
 
 					_source.Processing += OnProcessing;
@@ -82,10 +78,7 @@ namespace StockSharp.Algo.Candles
 
 			public CandleManagerSourceList(CandleManager manager)
 			{
-				if (manager == null)
-					throw new ArgumentNullException(nameof(manager));
-
-				_manager = manager;
+				_manager = manager ?? throw new ArgumentNullException(nameof(manager));
 			}
 
 			protected override void OnAdded(ICandleSource<Candle> item)
@@ -137,10 +130,7 @@ namespace StockSharp.Algo.Candles
 
 			public ExternalCandleSource(IExternalCandleSource source)
 			{
-				if (source == null)
-					throw new ArgumentNullException(nameof(source));
-
-				_source = source;
+				_source = source ?? throw new ArgumentNullException(nameof(source));
 				_source.NewCandles += OnNewCandles;
 				_source.Stopped += OnStopped;
 			}
@@ -223,10 +213,7 @@ namespace StockSharp.Algo.Candles
 
 			public ConnectorCandleSource(Connector connector)
 			{
-				if (connector == null)
-					throw new ArgumentNullException(nameof(connector));
-
-				_connector = connector;
+				_connector = connector ?? throw new ArgumentNullException(nameof(connector));
 				_connector.CandleSeriesProcessing += OnConnectorProcessingCandle;
 				_connector.CandleSeriesStopped += OnConnectorCandleSeriesStopped;
 			}
@@ -279,17 +266,17 @@ namespace StockSharp.Algo.Candles
 		/// </summary>
 		public CandleManager()
 		{
-			Sources = new CandleManagerSourceList(this)
-			{
-				new StorageCandleSource(),
+			Sources = new CandleManagerSourceList(this);
+			//{
+			//	new StorageCandleSource(),
 
-				//new BuilderCandleSource<TimeFrameCandleBuilder>(),
-				//new BuilderCandleSource<TickCandleBuilder>(),
-				//new BuilderCandleSource<VolumeCandleBuilder>(),
-				//new BuilderCandleSource<RangeCandleBuilder>(),
-				//new BuilderCandleSource<RenkoCandleBuilder>(),
-				//new BuilderCandleSource<PnFCandleBuilder>(),
-			};
+			//	//new BuilderCandleSource<TimeFrameCandleBuilder>(),
+			//	//new BuilderCandleSource<TickCandleBuilder>(),
+			//	//new BuilderCandleSource<VolumeCandleBuilder>(),
+			//	//new BuilderCandleSource<RangeCandleBuilder>(),
+			//	//new BuilderCandleSource<RenkoCandleBuilder>(),
+			//	//new BuilderCandleSource<PnFCandleBuilder>(),
+			//};
 		}
 
 		///// <summary>
@@ -346,20 +333,20 @@ namespace StockSharp.Algo.Candles
 			}
 		}
 
-		private IStorageRegistry _storageRegistry;
+		//private IStorageRegistry _storageRegistry;
 
-		/// <summary>
-		/// The data storage. To be sent to all sources that implement the interface <see cref="IStorageCandleSource"/>.
-		/// </summary>
-		public IStorageRegistry StorageRegistry
-		{
-			get => _storageRegistry;
-			set
-			{
-				_storageRegistry = value;
-				Sources.OfType<IStorageCandleSource>().ForEach(s => s.StorageRegistry = value);
-			}
-		}
+		///// <summary>
+		///// The data storage. To be sent to all sources that implement the interface <see cref="IStorageCandleSource"/>.
+		///// </summary>
+		//public IStorageRegistry StorageRegistry
+		//{
+		//	get => _storageRegistry;
+		//	set
+		//	{
+		//		_storageRegistry = value;
+		//		Sources.OfType<IStorageCandleSource>().ForEach(s => s.StorageRegistry = value);
+		//	}
+		//}
 
 		/// <summary>
 		/// All currently active candles series started via <see cref="Start"/>.
@@ -372,7 +359,7 @@ namespace StockSharp.Algo.Candles
 		/// <summary>
 		/// Candles sources.
 		/// </summary>
-		public ICandleSourceList Sources { get; }
+		public IList<ICandleSource<Candle>> Sources { get; }
 
 		/// <summary>
 		/// The source priority by speed (0 - the best).
@@ -486,7 +473,7 @@ namespace StockSharp.Algo.Candles
 		/// </summary>
 		protected override void DisposeManaged()
 		{
-			lock (Sources.SyncRoot)
+			lock (((CandleManagerSourceList)Sources).SyncRoot)
 			{
 				Sources.ForEach(s => s.Dispose());
 				Sources.Clear();

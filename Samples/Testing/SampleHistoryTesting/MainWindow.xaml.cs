@@ -37,12 +37,10 @@ namespace SampleHistoryTesting
 	using StockSharp.Algo.Testing;
 	using StockSharp.Algo.Indicators;
 	using StockSharp.BusinessEntities;
-	using StockSharp.ITCH;
 	using StockSharp.Logging;
 	using StockSharp.Messages;
 	using StockSharp.Xaml.Charting;
 	using StockSharp.Localization;
-	using StockSharp.Plaza;
 
 	public partial class MainWindow
 	{
@@ -69,7 +67,7 @@ namespace SampleHistoryTesting
 			{
 			}
 
-			void ISecurityStorage.Save(Security security)
+			void ISecurityStorage.Save(Security security, bool forced)
 			{
 			}
 
@@ -405,8 +403,8 @@ namespace SampleHistoryTesting
 
 					//UseExternalCandleSource = emulationInfo.UseCandleTimeFrame != null,
 
-					CreateDepthFromOrdersLog = emulationInfo.UseOrderLog,
-					CreateTradesFromOrdersLog = emulationInfo.UseOrderLog,
+					//CreateDepthFromOrdersLog = emulationInfo.UseOrderLog,
+					//CreateTradesFromOrdersLog = emulationInfo.UseOrderLog,
 
 					HistoryMessageAdapter =
 					{
@@ -420,9 +418,7 @@ namespace SampleHistoryTesting
 						{
 							{
 								secId,
-								LocalizedStrings.ActiveLanguage == Languages.Russian
-									? (IOrderLogMarketDepthBuilder)new PlazaOrderLogMarketDepthBuilder(secId)
-									: new ItchOrderLogMarketDepthBuilder(secId)
+								new OrderLogMarketDepthBuilder(secId)
 							}
 						}
 					},
@@ -439,7 +435,7 @@ namespace SampleHistoryTesting
 
 				var series = new CandleSeries(typeof(TimeFrameCandle), security, timeFrame)
 				{
-					BuildCandlesMode = emulationInfo.UseCandleTimeFrame == null ? BuildCandlesModes.Build : BuildCandlesModes.Load,
+					BuildCandlesMode = emulationInfo.UseCandleTimeFrame == null ? MarketDataBuildModes.Build : MarketDataBuildModes.Load,
 					BuildCandlesFrom = emulationInfo.UseOrderLog ? (MarketDataTypes?)MarketDataTypes.OrderLog : null,
 				};
 
@@ -479,6 +475,34 @@ namespace SampleHistoryTesting
 
 				logManager.Sources.Add(strategy);
 
+				connector.Connected += () =>
+				{
+					if (emulationInfo.HistorySource != null)
+					{
+						// passing null value as security to register the source for all securities
+
+						if (emulationInfo.UseCandleTimeFrame != null)
+						{
+							connector.RegisterHistorySource(null, MarketDataTypes.CandleTimeFrame, emulationInfo.UseCandleTimeFrame.Value, emulationInfo.HistorySource);
+						}
+
+						if (emulationInfo.UseTicks)
+						{
+							connector.RegisterHistorySource(null, MarketDataTypes.Trades, null, emulationInfo.HistorySource);
+						}
+
+						if (emulationInfo.UseLevel1)
+						{
+							connector.RegisterHistorySource(null, MarketDataTypes.Level1, null, emulationInfo.HistorySource);
+						}
+
+						if (emulationInfo.UseMarketDepth)
+						{
+							connector.RegisterHistorySource(null, MarketDataTypes.MarketDepth, null, emulationInfo.HistorySource);
+						}
+					}
+				};
+
 				connector.NewSecurity += s =>
 				{
 					if (s != security)
@@ -487,29 +511,7 @@ namespace SampleHistoryTesting
 					// fill level1 values
 					connector.HistoryMessageAdapter.SendOutMessage(level1Info);
 
-					if (emulationInfo.HistorySource != null)
-					{
-						if (emulationInfo.UseCandleTimeFrame != null)
-						{
-							connector.RegisterHistorySource(security, MarketDataTypes.CandleTimeFrame, emulationInfo.UseCandleTimeFrame.Value, emulationInfo.HistorySource);
-						}
-
-						if (emulationInfo.UseTicks)
-						{
-							connector.RegisterHistorySource(security, MarketDataTypes.Trades, null, emulationInfo.HistorySource);
-						}
-
-						if (emulationInfo.UseLevel1)
-						{
-							connector.RegisterHistorySource(security, MarketDataTypes.Level1, null, emulationInfo.HistorySource);
-						}
-
-						if (emulationInfo.UseMarketDepth)
-						{
-							connector.RegisterHistorySource(security, MarketDataTypes.MarketDepth, null, emulationInfo.HistorySource);
-						}
-					}
-					else
+					if (emulationInfo.HistorySource == null)
 					{
 						if (emulationInfo.UseMarketDepth)
 						{

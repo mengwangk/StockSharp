@@ -79,7 +79,8 @@ namespace StockSharp.Algo.Storages
 		/// <summary>
 		/// Initialize the storage.
 		/// </summary>
-		void Init();
+		/// <returns>Possible errors with storage names. Empty dictionary means initialization without any issues.</returns>
+		IDictionary<IExtendedInfoStorageItem, Exception> Init();
 
 		/// <summary>
 		/// To get storage for the specified name.
@@ -129,13 +130,10 @@ namespace StockSharp.Algo.Storages
 
 			public CsvExtendedInfoStorageItem(CsvExtendedInfoStorage storage, string fileName)
 			{
-				if (storage == null)
-					throw new ArgumentNullException(nameof(storage));
-
 				if (fileName.IsEmpty())
 					throw new ArgumentNullException(nameof(fileName));
 
-				_storage = storage;
+				_storage = storage ?? throw new ArgumentNullException(nameof(storage));
 				_fileName = fileName;
 			}
 
@@ -338,13 +336,7 @@ namespace StockSharp.Algo.Storages
 		public DelayAction DelayAction
 		{
 			get => _delayAction;
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_delayAction = value;
-			}
+			set => _delayAction = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		IExtendedInfoStorageItem IExtendedInfoStorage.Create(string storageName, Tuple<string, Type>[] fields)
@@ -402,18 +394,28 @@ namespace StockSharp.Algo.Storages
 
 		IEnumerable<IExtendedInfoStorageItem> IExtendedInfoStorage.Storages => _items.CachedValues;
 
-		/// <summary>
-		/// Initialize the storage.
-		/// </summary>
-		public void Init()
+		/// <inheritdoc />
+		public IDictionary<IExtendedInfoStorageItem, Exception> Init()
 		{
+			var errors = new Dictionary<IExtendedInfoStorageItem, Exception>();
+
 			foreach (var fileName in Directory.GetFiles(_path, "*.csv"))
 			{
 				var item = new CsvExtendedInfoStorageItem(this, fileName);
+
 				_items.Add(Path.GetFileNameWithoutExtension(fileName), item);
 
-				item.Init();
+				try
+				{
+					item.Init();
+				}
+				catch (Exception ex)
+				{
+					errors.Add(item, ex);
+				}
 			}
+
+			return errors;
 		}
 	}
 }

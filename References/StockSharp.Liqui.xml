@@ -9,11 +9,6 @@
             The message adapter for <see cref="N:StockSharp.Liqui"/>.
             </summary>
         </member>
-        <member name="P:StockSharp.Liqui.LiquiMessageAdapter.AllTimeFrames">
-            <summary>
-            Possible time-frames.
-            </summary>
-        </member>
         <member name="P:StockSharp.Liqui.LiquiMessageAdapter.Key">
             <summary>
             Key.
@@ -22,6 +17,11 @@
         <member name="P:StockSharp.Liqui.LiquiMessageAdapter.Secret">
             <summary>
             Secret.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Liqui.LiquiMessageAdapter.BalanceCheckInterval">
+            <summary>
+            Balance check interval. Required in case of deposit and withdraw actions.
             </summary>
         </member>
         <member name="M:StockSharp.Liqui.LiquiMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
@@ -89,6 +89,11 @@
         <member name="P:StockSharp.Liqui.LiquiTrader.Secret">
             <summary>
             Secret.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Liqui.LiquiTrader.BalanceCheckInterval">
+            <summary>
+            Balance check interval. Required in case of deposit and withdraw actions.
             </summary>
         </member>
     </members>

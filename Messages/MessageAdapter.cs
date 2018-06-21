@@ -34,7 +34,7 @@ namespace StockSharp.Messages
 	/// <summary>
 	/// The base adapter converts messages <see cref="Message"/> to the command of the trading system and back.
 	/// </summary>
-	public abstract class MessageAdapter : BaseLogReceiver, IMessageAdapter
+	public abstract class MessageAdapter : BaseLogReceiver, IMessageAdapter, INotifyPropertyChanged
 	{
 		private class CodeTimeOut
 			//where T : class
@@ -99,17 +99,18 @@ namespace StockSharp.Messages
 		/// <param name="transactionIdGenerator">Transaction id generator.</param>
 		protected MessageAdapter(IdGenerator transactionIdGenerator)
 		{
-			if (transactionIdGenerator == null)
-				throw new ArgumentNullException(nameof(transactionIdGenerator));
-
 			Platform = Platforms.AnyCPU;
 
-			TransactionIdGenerator = transactionIdGenerator;
+			TransactionIdGenerator = transactionIdGenerator ?? throw new ArgumentNullException(nameof(transactionIdGenerator));
 			SecurityClassInfo = new Dictionary<string, RefPair<SecurityTypes, string>>();
 
 			StorageName = GetType().Namespace.Remove(nameof(StockSharp)).Remove(".");
 
-			Platform = GetType().GetAttribute<TargetPlatformAttribute>()?.Platform ?? Platforms.AnyCPU;
+			Platform = GetType().GetPlatform();
+
+			var attr = GetType().GetAttribute<MessageAdapterCategoryAttribute>();
+			if (attr != null)
+				Categories = attr.Categories;
 		}
 
 		private MessageTypes[] _supportedMessages = ArrayHelper.Empty<MessageTypes>();
@@ -159,6 +160,10 @@ namespace StockSharp.Messages
 		/// <inheritdoc />
 		[Browsable(false)]
 		public virtual IEnumerable<TimeSpan> TimeFrames => Enumerable.Empty<TimeSpan>();
+
+		/// <inheritdoc />
+		[Browsable(false)]
+		public virtual bool CheckTimeFrameByRequest { get; set; }
 
 		private TimeSpan _heartbeatInterval = TimeSpan.Zero;
 
@@ -222,6 +227,14 @@ namespace StockSharp.Messages
 
 		/// <inheritdoc />
 		[Browsable(false)]
+		public virtual bool IsSupportCandlesUpdates => false;
+
+		/// <inheritdoc />
+		[Browsable(false)]
+		public virtual MessageAdapterCategories Categories { get; }
+
+		/// <inheritdoc />
+		[Browsable(false)]
 		public virtual string StorageName { get; }
 
 		/// <inheritdoc />
@@ -249,10 +262,11 @@ namespace StockSharp.Messages
 		public virtual Tuple<string, Type>[] SecurityExtendedFields { get; } = ArrayHelper.Empty<Tuple<string, Type>>();
 
 		/// <inheritdoc />
-		public virtual OrderCondition CreateOrderCondition()
-		{
-			return null;
-		}
+		[Browsable(false)]
+		public virtual bool IsSupportSecuritiesLookupAll => true;
+
+		/// <inheritdoc />
+		public virtual OrderCondition CreateOrderCondition() => null;
 
 		/// <inheritdoc />
 		[CategoryLoc(LocalizedStrings.Str174Key)]
@@ -265,13 +279,7 @@ namespace StockSharp.Messages
 		public IdGenerator TransactionIdGenerator
 		{
 			get => _transactionIdGenerator;
-			set
-			{
-				if (value == null)
-					throw new ArgumentNullException(nameof(value));
-
-				_transactionIdGenerator = value;
-			}
+			set => _transactionIdGenerator = value ?? throw new ArgumentNullException(nameof(value));
 		}
 
 		/// <summary>
@@ -561,23 +569,22 @@ namespace StockSharp.Messages
 			SendOutMessage(new MarketDataMessage { OriginalTransactionId = originalTransactionId, IsNotSupported = true });
 		}
 
-		/// <summary>
-		/// Check the connection is alive. Uses only for connected states.
-		/// </summary>
-		/// <returns><see langword="true" />, is the connection still alive, <see langword="false" />, if the connection was rejected.</returns>
+		/// <inheritdoc />
 		public virtual bool IsConnectionAlive()
 		{
 			return true;
 		}
 
-		/// <summary>
-		/// Create market depth builder.
-		/// </summary>
-		/// <param name="securityId">Security ID.</param>
-		/// <returns>Order log to market depth builder.</returns>
+		/// <inheritdoc />
 		public virtual IOrderLogMarketDepthBuilder CreateOrderLogMarketDepthBuilder(SecurityId securityId)
 		{
-			throw new NotSupportedException();
+			return new OrderLogMarketDepthBuilder(securityId);
+		}
+
+		/// <inheritdoc />
+		public virtual IEnumerable<TimeSpan> GetTimeFrames(SecurityId securityId)
+		{
+			return TimeFrames;
 		}
 
 		/// <summary>
@@ -590,6 +597,7 @@ namespace StockSharp.Messages
 			HeartbeatInterval = storage.GetValue<TimeSpan>(nameof(HeartbeatInterval));
 			SupportedMessages = storage.GetValue<string[]>(nameof(SupportedMessages)).Select(i => i.To<MessageTypes>()).ToArray();
 			AssociatedBoardCode = storage.GetValue(nameof(AssociatedBoardCode), AssociatedBoardCode);
+			CheckTimeFrameByRequest = storage.GetValue(nameof(CheckTimeFrameByRequest), CheckTimeFrameByRequest);
 
 			base.Load(storage);
 		}
@@ -604,6 +612,7 @@ namespace StockSharp.Messages
 			storage.SetValue(nameof(HeartbeatInterval), HeartbeatInterval);
 			storage.SetValue(nameof(SupportedMessages), SupportedMessages.Select(t => t.To<string>()).ToArray());
 			storage.SetValue(nameof(AssociatedBoardCode), AssociatedBoardCode);
+			storage.SetValue(nameof(CheckTimeFrameByRequest), CheckTimeFrameByRequest);
 
 			base.Save(storage);
 		}
@@ -622,6 +631,23 @@ namespace StockSharp.Messages
 		object ICloneable.Clone()
 		{
 			return Clone();
+		}
+
+		private PropertyChangedEventHandler _propertyChanged;
+
+		event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+		{
+			add => _propertyChanged += value;
+			remove => _propertyChanged -= value;
+		}
+
+		/// <summary>
+		/// Raise <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
+		/// </summary>
+		/// <param name="propertyName">The name of the property that changed.</param>
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			_propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 

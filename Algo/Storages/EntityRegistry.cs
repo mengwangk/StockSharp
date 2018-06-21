@@ -16,6 +16,7 @@ Copyright 2010 by StockSharp, LLC
 namespace StockSharp.Algo.Storages
 {
 	using System;
+	using System.Collections.Generic;
 
 	using Ecng.Configuration;
 	using Ecng.Serialization;
@@ -41,10 +42,7 @@ namespace StockSharp.Algo.Storages
 		/// <param name="storage">The special interface for direct access to the storage.</param>
 		public EntityRegistry(IStorage storage)
 		{
-			if (storage == null)
-				throw new ArgumentNullException(nameof(storage));
-
-			Storage = storage;
+			Storage = storage ?? throw new ArgumentNullException(nameof(storage));
 
 			ConfigManager.TryRegisterService(storage);
 
@@ -115,8 +113,9 @@ namespace StockSharp.Algo.Storages
 		///// </summary>
 		//public virtual IStorageEntityList<News> News { get; }
 
-		void IEntityRegistry.Init()
+		IDictionary<object, Exception> IEntityRegistry.Init()
 		{
+			return new Dictionary<object, Exception>();
 		}
 
 		DelayAction IEntityRegistry.DelayAction
